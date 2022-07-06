@@ -1,0 +1,112 @@
+h2 {
+
+  width: 335px;
+  height: 34px;
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 140%;
+  margin-left: 25px;
+  margin-top: 6.66px;
+}
+::placeholder {
+  font-size: 13px;
+  font-weight: 400;
+
+  
+}
+.dropDown {
+ 
+  margin-left: 10px;
+display: flex;
+
+  width: 376px;
+  height: 54px;
+  background: #f0f5fb;
+  border-radius: 16px !important;
+  border: none;
+}
+.input {
+  background: #1c3663;
+  border-radius: 8px;
+  border: none !important;
+}
+.backGround {
+  margin-top: 0px;
+  width: 376px;
+  height: auto;
+  border-radius: 12px;
+
+  background-color: #142a51;
+  box-shadow: 0px 25px 70px rgba(53, 69, 98, 0.15),
+    0px 20px 50px rgba(53, 69, 98, 0.15);
+}
+
+.checkbox {
+
+}
+.empName{
+  position: relative;
+  margin-left: 20px;
+width: 86px;
+height: 18px;
+
+font-family: 'Montserrat';
+font-style: normal;
+font-weight: 500;
+font-size: 13px;
+line-height: 140%;
+/* or 18px */
+
+font-feature-settings: 'tnum' on, 'lnum' on;
+
+color: #DAE2EF;
+}
+
+.practi{
+
+
+
+
+font-weight: 500;
+font-size: 13px;
+
+
+
+font-feature-settings: 'tnum' on, 'lnum' on;
+
+color: #DAE2EF;
+
+
+}
+p{
+ 
+  
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 140%;
+
+  /* or 18px */
+  
+  font-feature-settings: 'tnum' on, 'lnum' on;
+  
+  color: #DAE2EF;
+
+
+}
+.MuiPaper-root{
+  background: #142a51 !important;
+
+}
+
+.MuiOutlinedInput-root{
+  width: 376px;
+  border-radius: 16px !important;
+  border: none;
+
+
+}

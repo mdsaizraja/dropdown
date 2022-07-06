@@ -1,0 +1,34 @@
+
+[
+    { "id":1,
+        "name":"Dr. Siegfried Tausend",
+        "img":"./dr1.jpg"
+    },
+    { "id":2,
+        "name":"Dr. Xavier III",
+        "img":"doc.png"
+    },
+    {
+        "id":3,
+        "name":"Tausend",
+        "img":"doc.png"
+    }
+    , {
+        "id":4,
+        "name":"Siegfried Tausend",
+        "img":"doc.png"
+    }, {
+        "id":5,
+        "name":"Dr abc ",
+        "img":"doc.png"
+    }, {
+        "id":6,
+        "name":"raja",
+        "img":"doc.png"
+    }, {
+        "id":7,
+        "name":"Dr xyz",
+        "img":"./doc.png"
+    }
+       
+]
