@@ -21,53 +21,46 @@ export default function App() {
 
   const [searchText, setSearchText] = useState("");
 
-  var allData = [...data, ...practi];
-  // const containsText = (text, searchText) =>
-  //   text.toLowerCase().indexOf(searchText.toLowerCase()) > -1;
-  
+  var practiStr = practi.map((el) => el.name);
 
+  var dataStr = data.map((el) => el.name);
+
+  var allData = [...dataStr, ...practiStr];
+
+  const isAllSelected =
+    practiStr.length > 0 && selectedOption.length === practiStr.length;
+
+  const allPracti =
+    dataStr.length > 0 && selectedOption.length >= dataStr.length;
 
   const handleChange = (event) => {
     const value = event.target.value;
-
-    // if (value[0] === "all") {
-    //   setSelectedOption(
-    //     selectedOption.length === allData.length ? [] : allData
-    //   );
 
     if (value[value.length - 1] === "all") {
       setSelectedOption(
         selectedOption.length === allData.length ? [] : allData
       );
 
-    
       return;
     }
+
     if (value[value.length - 1] === "all-practitioners") {
-      setSelectedOption(selectedOption.length === practi.length ? [] : practi );
-      return;
-    
-    }
-    if (practi.find((p) => p.name === value[value.length - 1])) {
-      setSelectedOption(value);
-      console.log(typeof(value))
-      allData.map((el)=>console.log(typeof(el.name)))
-
-
+      setSelectedOption(
+        selectedOption.length === practiStr.length ? [] : practiStr
+      );
       return;
     }
+
     if (value[value.length - 1] === "all-assistant") {
-      setSelectedOption(["all-assistant"]);
+      setSelectedOption([]);
       return;
     }
-    console.log("aa", value);
+
     setSelectedOption(value);
   };
   const displayedOptions = (searchText) => {
     let filterResult = allData.filter((option) =>
-      option.name.toLowerCase().includes(searchText.toLowerCase())
-        ? option.name
-        : ""
+      option.toLowerCase().includes(searchText.toLowerCase()) ? option : ""
     );
     setResult(filterResult);
     console.log(filterResult);
@@ -75,7 +68,7 @@ export default function App() {
 
   const handleSearch = (e) => {
     console.log(e.target.value);
-    // searchText= e.target.value;
+
     if (e.target.value === "") {
       setSearchText("");
       setResult("");
@@ -114,18 +107,15 @@ export default function App() {
                     {selectedOption.length === allData.length
                       ? "All employees"
                       : ""}{" "}
-                    {selectedOption.length === practi.length
+                    {selectedOption.length === practiStr.length
                       ? " All practitioners"
                       : ""}
                   </p>
                 </div>
               )}
             >
-              {/* <div className="backGround"> */}
-
               <MenuItem>
                 <TextField
-                  // Autofocus on textfield
                   autoFocus
                   className="input"
                   placeholder="Search employee..."
@@ -147,8 +137,8 @@ export default function App() {
               </MenuItem>
               {result.length > 0
                 ? result.map((el) => (
-                    <MenuItem key={el.id} value={el.name}>
-                      {result[0].name}
+                    <MenuItem key={el} value={el}>
+                      {el}
                     </MenuItem>
                   ))
                 : ""}
@@ -164,63 +154,40 @@ export default function App() {
                 <Checkbox
                   style={{ position: "absolute", marginLeft: "308px" }}
                   checked={selectedOption.length === allData.length}
-
-                  // indeterminate={
-                  //   selectedOption.length > 0 &&
-                  //   selectedOption.length < allData.length
-                  // }
                 />
               </MenuItem>
               <MenuItem value="all-practitioners">
                 <p> All practitioners</p>
                 <Checkbox
                   style={{ position: "absolute", marginLeft: "308px" }}
-                  checked={
-                    selectedOption.length === practi.length ||
-                    selectedOption.length === allData.length
+                  checked={allPracti || isAllSelected}
+                  indeterminate={
+                    selectedOption.length > 0 &&
+                    selectedOption.length < practiStr.length
                   }
-                  // indeterminate={
-                  //   selectedOption.length > 0 &&
-                  //   selectedOption.length < practi.length
-                  // }
                 />
               </MenuItem>
 
               {practi.map((el) => {
                 return (
                   <MenuItem className="practi" key={el.id} value={el.name}>
-                    <Avatar key={el.id} alt={el.name} src={el.img}/>
+                    <Avatar key={el.id} alt={el.name} src={el.img} />
                     <p style={{ marginLeft: "16px" }}>{el.name}</p>
                     <Checkbox
                       style={{ position: "absolute", marginLeft: "308px" }}
-                      checked={
-                        selectedOption.length === practi.length ||
-                        selectedOption.length === allData.length
-                          ? selectedOption.length === practi.length ||
-                            selectedOption.length === allData.length
-                          : selectedOption[0] === el.name
-                      }
-                      // indeterminate={
-                      //   selectedOption.length > 0 &&
-                      //   selectedOption.length < practi.length
-                      // }
+                      checked={selectedOption.indexOf(el.name) > -1}
                     />
                   </MenuItem>
                 );
               })}
+
               <MenuItem value="all-assistant">
                 <p> All assistants</p>
                 <Checkbox
                   style={{ position: "absolute", marginLeft: "308px" }}
-                  checked={selectedOption[0] === "all-assistant"}
-                  // indeterminate={
-                  //   selectedOption.length > 0 &&
-                  //   selectedOption.length < practi.length
-                  // }
+                  checked={selectedOption.length === allData.length}
                 />
               </MenuItem>
-
-              {/* </div> */}
             </Select>
           </div>
         </Grid>

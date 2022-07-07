@@ -1,11 +1,11 @@
 
 [
     { "id":1,
-        "name":"Dr. Siegfried Tausend",
+        "name":"Dr.ravi",
         "img":"./dr1.jpg"
     },
     { "id":2,
-        "name":"Dr. Xavier III",
+        "name":"Dr.abj",
         "img":"doc.png"
     },
     {
@@ -15,7 +15,7 @@
     }
     , {
         "id":4,
-        "name":"Siegfried Tausend",
+        "name":"Dr.rohan",
         "img":"doc.png"
     }, {
         "id":5,
