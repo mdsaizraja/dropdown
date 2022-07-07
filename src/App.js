@@ -20,6 +20,7 @@ export default function App() {
   const [result, setResult] = useState("");
 
   const [searchText, setSearchText] = useState("");
+ 
 
   var practiStr = practi.map((el) => el.name);
 
@@ -27,27 +28,37 @@ export default function App() {
 
   var allData = [...dataStr, ...practiStr];
 
-  const isAllSelected =
-    practiStr.length > 0 && selectedOption.length === practiStr.length;
+  const isAllSelected = selectedOption.length === practiStr.length;
 
   const allPracti =
     dataStr.length > 0 && selectedOption.length >= dataStr.length;
 
   const handleChange = (event) => {
     const value = event.target.value;
+   
 
     if (value[value.length - 1] === "all") {
       setSelectedOption(
         selectedOption.length === allData.length ? [] : allData
       );
-
       return;
     }
+
 
     if (value[value.length - 1] === "all-practitioners") {
       setSelectedOption(
         selectedOption.length === practiStr.length ? [] : practiStr
       );
+
+      return;
+    }
+    if(!value.includes("all") && value.length >  practiStr.length){
+      let filteredData = value.filter((v)=>practiStr.includes(v))
+     
+      
+      setSelectedOption(selectedOption.length === practiStr.length ? [] : filteredData )
+     
+      
       return;
     }
 
@@ -63,11 +74,11 @@ export default function App() {
       option.toLowerCase().includes(searchText.toLowerCase()) ? option : ""
     );
     setResult(filterResult);
-    console.log(filterResult);
+    
   };
 
   const handleSearch = (e) => {
-    console.log(e.target.value);
+    
 
     if (e.target.value === "") {
       setSearchText("");
@@ -145,7 +156,7 @@ export default function App() {
               <MenuItem value="all">
                 {
                   <AvatarGroup max={2}>
-                    {allData.map((el) => (
+                    {data.map((el) => (
                       <Avatar src={el.img} key={el.id} alt={el.name} />
                     ))}
                   </AvatarGroup>
@@ -161,18 +172,22 @@ export default function App() {
                 <Checkbox
                   style={{ position: "absolute", marginLeft: "308px" }}
                   checked={allPracti || isAllSelected}
-                  indeterminate={
-                    selectedOption.length > 0 &&
-                    selectedOption.length < practiStr.length
-                  }
+                  // indeterminate={
+                  //   selectedOption.length > 0 &&
+                  //   selectedOption.length < practiStr.length
+                  // }
                 />
               </MenuItem>
-
               {practi.map((el) => {
                 return (
-                  <MenuItem className="practi" key={el.id} value={el.name}>
+                  <MenuItem
+                    className="practi"
+                    key={el.id}
+                    value={el.name || "practitioners"}
+                  >
                     <Avatar key={el.id} alt={el.name} src={el.img} />
                     <p style={{ marginLeft: "16px" }}>{el.name}</p>
+
                     <Checkbox
                       style={{ position: "absolute", marginLeft: "308px" }}
                       checked={selectedOption.indexOf(el.name) > -1}
